@@ -28,7 +28,7 @@ extension UIViewController : UIScrollViewDelegate
                                                             style: .done,
                                                             target: self,
                                                             action: selector)
-        navigationItem.rightBarButtonItem?.tintColor = Resource.Colors.defaultValue
+        navigationItem.rightBarButtonItem?.tintColor = .orange
     }
     
     func configureController(){
@@ -40,14 +40,14 @@ extension UIViewController : UIScrollViewDelegate
     func addLeftButtonInNavBar(_ text: String) -> UIButton{
         let button = UIButton()
         button.setTitle(text, for: .normal)
-        button.setTitleColor(Resource.Colors.defaultValue, for: .normal)
+        button.setTitleColor(.orange, for: .normal)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
         return button
     }
     func addRightButtonInNavBar(_ text: String) -> UIButton{
         let button = UIButton()
         button.setTitle(text, for: .normal)
-        button.setTitleColor(Resource.Colors.defaultValue, for: .normal)
+        button.setTitleColor(.orange, for: .normal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
         return button
     }

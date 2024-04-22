@@ -17,6 +17,12 @@ import UIKit
         // Override point for customization after application launch.
         return true
     }
+    
+    var restrictRotation:UIInterfaceOrientationMask = .portrait
+     private func  applicationWindow(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow) -> UIInterfaceOrientationMask{
+             
+           return self.restrictRotation
+         }
 
     // MARK: UISceneSession Lifecycle
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

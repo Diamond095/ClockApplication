@@ -13,7 +13,7 @@ class SearchTextFieldGlobalClock: UITextField {
         super.init(frame: .zero)
         text = "Search"
         textColor = Resource.Colors.dirtyWhite
-        backgroundColor = Resource.Colors.lightGrey
+        backgroundColor = .gray
         layer.cornerRadius = 10
         
     }

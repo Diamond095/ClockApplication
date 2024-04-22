@@ -9,7 +9,7 @@ import UIKit
 
 class AlarmTableView: UITableView {
 
-    init(frame : CGRect){
+    init(){
         super.init(frame: .zero,style: .plain)
         self.backgroundColor = .black
     }
@@ -17,7 +17,7 @@ class AlarmTableView: UITableView {
     required init?(coder: NSCoder) {
         super.init(frame: .zero,style: .plain)
         self.backgroundColor = .black
-        self.translatesAutoresizingMaskIntoConstraints = false
+        separatorColor = .gray
     }
   
 }

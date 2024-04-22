@@ -11,15 +11,21 @@ class AlarmTableViewCell: UITableViewCell {
 
     let firstLabel : UILabel = {
         let label = UILabel()
-        label.text = "Ячейка1"
-        label.textColor = .red
+        label.text = "6:00"
+        label.font = UIFont.systemFont(ofSize: 70, weight: .light)
+        label.textColor = .gray
         return label
     }()
     let secondLabel : UILabel = {
         let label = UILabel()
-        label.text = "Ячейка2"
-        label.textColor = .red
+        label.text = "Alarm"
+        label.textColor =  .gray
         return label
+    }()
+    let switchView : UISwitch = {
+        let switchView = UISwitch()
+        switchView.onTintColor = .lightGray
+        return switchView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -29,6 +35,7 @@ class AlarmTableViewCell: UITableViewCell {
         selectionStyle = .none
         setupViews()
         configure()
+        switchView.addTarget(self, action: #selector(changeStyle), for: .valueChanged)
     }
     
     required init?(coder: NSCoder) {
@@ -37,18 +44,29 @@ class AlarmTableViewCell: UITableViewCell {
     func setupViews(){
         setupView(firstLabel)
         setupView(secondLabel)
+        setupView(switchView)
     }
-    private func configure(){
+    func configure(){
+        super.layoutSubviews()
         NSLayoutConstraint.activate([
-            firstLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10),
-            firstLabel.topAnchor.constraint(equalTo: topAnchor),
-            firstLabel.heightAnchor.constraint(equalToConstant: 15),
+            self.heightAnchor.constraint(equalToConstant: 300),
+            firstLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            firstLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
                         
-            secondLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 50),
-            secondLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            secondLabel.heightAnchor.constraint(equalToConstant: 15)
+            secondLabel.leadingAnchor.constraint(equalTo: firstLabel.leadingAnchor),
+            secondLabel.topAnchor.constraint(equalTo: firstLabel.bottomAnchor),
+            
+            switchView.leadingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -70),
+            switchView.topAnchor.constraint(equalTo: firstLabel.topAnchor, constant: 30)
 
         ])
     }
-    
+    @objc private func changeStyle(target: UISwitch){
+        if target.isOn{
+            switchView.onTintColor = .lightGray
+        }
+        else{
+            
+        }
+    }
 }

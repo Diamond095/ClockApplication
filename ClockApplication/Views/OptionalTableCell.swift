@@ -8,7 +8,7 @@
 import UIKit
 
 
-class GroupedTableCell: UITableViewCell {
+class OptionalTableCell: UITableViewCell {
 
     enum Mode {
         case withTextField

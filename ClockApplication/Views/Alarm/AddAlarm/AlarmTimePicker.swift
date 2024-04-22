@@ -12,10 +12,10 @@ class AlarmTimePicker: UIDatePicker {
     
     init(){
         super.init(frame: .zero)
-        tintColor = Resource.Colors.lightGrey
+        tintColor = .gray
         datePickerMode = .time
         preferredDatePickerStyle = .wheels
-        setValue(Resource.Colors.lightGrey, forKey: "textColor")
+        setValue(Resource.Colors.dirtyWhite, forKey: "textColor")
         setValue(Resource.Colors.dirtyWhite, forKey: "tintColor")
         setValue(false, forKey: "highlightsToday")
         addTarget(self, action: #selector(changeColor) , for: .valueChanged)

@@ -11,7 +11,7 @@ import UIKit
 
 extension UIView {
     @objc func setupView(_ view: UIView) {
-          addSubview(view)
+        addSubview(view)
           view.translatesAutoresizingMaskIntoConstraints = false
       }
 }

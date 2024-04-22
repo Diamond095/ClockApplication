@@ -10,7 +10,6 @@
 		DD7CEBC92BB31717006E0568 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CEBC82BB31717006E0568 /* AppDelegate.swift */; };
 		DD7CEBCB2BB31717006E0568 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CEBCA2BB31717006E0568 /* SceneDelegate.swift */; };
 		DD7CEBCD2BB31717006E0568 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CEBCC2BB31717006E0568 /* ViewController.swift */; };
-		DD7CEBD22BB31718006E0568 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7CEBD12BB31718006E0568 /* Assets.xcassets */; };
 		DD7CEBD52BB31718006E0568 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD7CEBD32BB31718006E0568 /* LaunchScreen.storyboard */; };
 		DD7CEBE12BB35A2F006E0568 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CEBE02BB35A2F006E0568 /* TabBarController.swift */; };
 		DD7CEBE52BB35C84006E0568 /* UIColor + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CEBE42BB35C84006E0568 /* UIColor + ext.swift */; };
@@ -41,6 +40,9 @@
 		DD7CEC302BCEC1BD006E0568 /* RegionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CEC2F2BCEC1BD006E0568 /* RegionsTableViewController.swift */; };
 		DD7CEC342BCFCC61006E0568 /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7CEC332BCFCC61006E0568 /* AlarmTableViewCell.swift */; };
 		DDACED442BD30E240037F913 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDACED432BD30E240037F913 /* BaseButton.swift */; };
+		DDACED452BD41B0D0037F913 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7CEBD12BB31718006E0568 /* Assets.xcassets */; };
+		DDACED472BD458490037F913 /* OptionalTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDACED462BD458490037F913 /* OptionalTableCell.swift */; };
+		DDACED4B2BD5733B0037F913 /* OptionalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDACED4A2BD5733B0037F913 /* OptionalTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +82,8 @@
 		DD7CEC2F2BCEC1BD006E0568 /* RegionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionsTableViewController.swift; sourceTree = "<group>"; };
 		DD7CEC332BCFCC61006E0568 /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 		DDACED432BD30E240037F913 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		DDACED462BD458490037F913 /* OptionalTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTableCell.swift; sourceTree = "<group>"; };
+		DDACED4A2BD5733B0037F913 /* OptionalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +237,8 @@
 				DD7CEC132BC4804E006E0568 /* BaseView.swift */,
 				DD7CEC192BC9992A006E0568 /* BaseTitle.swift */,
 				DDACED432BD30E240037F913 /* BaseButton.swift */,
+				DDACED462BD458490037F913 /* OptionalTableCell.swift */,
+				DDACED4A2BD5733B0037F913 /* OptionalTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -353,8 +359,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDACED452BD41B0D0037F913 /* Assets.xcassets in Resources */,
 				DD7CEBD52BB31718006E0568 /* LaunchScreen.storyboard in Resources */,
-				DD7CEBD22BB31718006E0568 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD7CEC182BC529F9006E0568 /* AlarmTableViewController.swift in Sources */,
+				DDACED4B2BD5733B0037F913 /* OptionalTableView.swift in Sources */,
 				DD7CEBCD2BB31717006E0568 /* ViewController.swift in Sources */,
 				DDACED442BD30E240037F913 /* BaseButton.swift in Sources */,
 				DD7CEC0E2BC47952006E0568 /* AlarmTableView.swift in Sources */,
@@ -384,6 +391,7 @@
 				DD7CEC052BC2F37F006E0568 /* StopWatch.swift in Sources */,
 				DD7CEBC92BB31717006E0568 /* AppDelegate.swift in Sources */,
 				DD7CEC302BCEC1BD006E0568 /* RegionsTableViewController.swift in Sources */,
+				DDACED472BD458490037F913 /* OptionalTableCell.swift in Sources */,
 				DD7CEC1A2BC9992A006E0568 /* BaseTitle.swift in Sources */,
 				DD7CEBF42BBEBF1F006E0568 /* StopWatchController.swift in Sources */,
 				DD7CEBE72BB35E1B006E0568 /* Resource.swift in Sources */,
@@ -544,8 +552,8 @@
 				INFOPLIST_FILE = ClockApplication/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -570,8 +578,8 @@
 				INFOPLIST_FILE = ClockApplication/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

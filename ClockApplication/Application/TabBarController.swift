@@ -20,7 +20,7 @@ final class TabBarController: UITabBarController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
+        (UIApplication.shared.delegate as! AppDelegate).restrictRotation = .all 
         cofigure()
     }
     required init?(coder: NSCoder) {
@@ -28,8 +28,8 @@ final class TabBarController: UITabBarController {
         }
     
     private func cofigure(){
-        tabBar.tintColor = Resource.Colors.defaultValue
-        tabBar.barTintColor = Resource.Colors.inactive
+        tabBar.tintColor = UIColor.systemOrange
+        tabBar.barTintColor = .gray
         tabBar.backgroundColor = .black
         tabBar.layer.borderWidth = 1
         tabBar.layer.masksToBounds = true
@@ -45,23 +45,23 @@ final class TabBarController: UITabBarController {
         let timerNavigation = NavBarController(rootViewController: timerController)
         worldClockNavigation.tabBarItem = UITabBarItem(
             title: Resource.Strings.Titles.worldClock,
-            image:Resource.Images.TabBar.worldClock,
-            tag:Tabs.worldClock.rawValue
+            image: UIImage(systemName: "globe"),
+            tag: Tabs.worldClock.rawValue
         )
         alarmNavigation.tabBarItem = UITabBarItem(
-            title:Resource.Strings.Titles.alarm,
-            image:Resource.Images.TabBar.alarm,
-            tag:Tabs.alarm.rawValue
+            title: Resource.Strings.Titles.alarm,
+            image: UIImage(systemName: "alarm.fill"),
+            tag: Tabs.alarm.rawValue
         )
         stopwatchNavigation.tabBarItem = UITabBarItem(
             title: Resource.Strings.Titles.stopwatch,
-            image:Resource.Images.TabBar.stopwatch,
+            image: UIImage(systemName: "stopwatch.fill"),
             tag: Tabs.stopwatch.rawValue
                                                     
         )
         timerNavigation.tabBarItem = UITabBarItem(
             title: Resource.Strings.Titles.timer,
-            image:Resource.Images.TabBar.timer,
+            image: UIImage(systemName: "timer"),
             tag: Tabs.timer.rawValue
         )
         setViewControllers([

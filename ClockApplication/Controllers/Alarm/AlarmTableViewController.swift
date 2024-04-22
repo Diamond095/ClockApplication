@@ -9,8 +9,14 @@ import UIKit
 
 class AlarmTableViewController: UITableViewController{
 
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView = AlarmTableView()
+        tableView.register(AlarmTableViewCell.self, forCellReuseIdentifier: "AlarmTableViewCell")
      //   configeTabelView()
     }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Timer {
+struct ModelTimer {
     var name : String
     var melody : String
     var time : Date

@@ -17,7 +17,7 @@ class GlobalClockController : UIViewController{
         view.setupView(overrideTitle)
         configureController()
         let leftNavButton =  addLeftButtonInNavBar("Edit")
-        
+        (UIApplication.shared.delegate as! AppDelegate).restrictRotation = .all 
         addPlusButtonNavBarInRight(selector: #selector(addGlobalClock))
         constraintViews()
     }

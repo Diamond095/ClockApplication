@@ -7,11 +7,11 @@
 
 import UIKit
 
-class BaseGroupedTableView: UITableView {
+class OptionalTableView: UITableView {
 
     init(){
         super.init(frame: .zero, style: .plain)
-        backgroundColor = .white
+        backgroundColor = .grayBackground
         clipsToBounds = true
         layer.cornerRadius = 10
         scrollsToTop = false

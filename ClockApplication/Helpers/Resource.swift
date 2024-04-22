@@ -4,11 +4,8 @@ import UIKit
 
 enum Resource {
     enum Colors {
-        static var defaultValue = UIColor(hexString: "#F1A43C")
-        static var inactive = UIColor(hexString: "#929DA5")
         static var separator = UIColor(hexString: "#E8ECEF")
         static var greyBackgroundColor = UIColor(hexString: "#1C1B1D")
-        static var lightGrey = UIColor(hexString: "#515054")
         static var dirtyWhite = UIColor(hexString: "#C2C1C3")
         static var darkGrey = UIColor(hexString: "#1C1B1D")
         static var darkRed = UIColor(hexString: "#2F100D")
@@ -25,6 +22,9 @@ enum Resource {
         }
         enum Icons{
             static var plus = UIImage(systemName: "plus")
+            static var play = UIImage(systemName: "play.fill")
+            static var pause = UIImage(systemName: "pause.circle")
+            static var continueImage = UIImage(systemName: "play.circle")
         }
     }
     enum Strings {

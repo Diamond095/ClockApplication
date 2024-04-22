@@ -12,6 +12,7 @@ final class NavBarController: UINavigationController {
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        (UIApplication.shared.delegate as! AppDelegate).restrictRotation = .all 
         configure()
     }
     func configure(){
