@@ -21,7 +21,6 @@ final class AddAlarmController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.setupView(timePicker)
-       // view.setupView(stackView)
         view.setupView(table)
         table.dataSource = self
         table.delegate = self
@@ -39,15 +38,13 @@ final class AddAlarmController: UIViewController {
         NSLayoutConstraint.activate([
             timePicker.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             timePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            timePicker.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95),
-          //  stackView.topAnchor.constraint(equalTo: timePicker.bottomAnchor, constant: 10),
-           // stackView.leadingAnchor.constraint(equalTo: timePicker.leadingAnchor),
-           // stackView.widthAnchor.constraint(equalTo: timePicker.widthAnchor)
-            table.topAnchor.constraint(equalTo: timePicker.bottomAnchor, constant: 10),
+            timePicker.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20),
+
+            table.topAnchor.constraint(equalTo: timePicker.bottomAnchor),
             table.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            table.leadingAnchor.constraint(equalTo: timePicker.leadingAnchor),
+            table.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             table.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            table.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95)
+            table.widthAnchor.constraint(equalTo: view.widthAnchor)
         ]);
     }
     
@@ -74,7 +71,7 @@ extension AddAlarmController : UITableViewDataSource, UITableViewDelegate {
             let cell = OptionalTableCell(mode: .withTextField, mainLabel: "Name", placeholder: "Alarm")
             return cell
         case 2:
-            let cell = OptionalTableCell(mode: .withController, mainLabel: "Melody", controllerOption: "Radar")
+            let cell = OptionalTableCell(mode: .withController, mainLabel: "Melody", controllerOption: "Radar", )
             return cell
         case 3:
             let cell = OptionalTableCell(mode: .withSwitch, mainLabel: "Repeat signal")
@@ -87,6 +84,11 @@ extension AddAlarmController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return OptionalTableView.automaticDimension
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath){
+                
+        }
     }
 
     
