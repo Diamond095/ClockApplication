@@ -24,7 +24,21 @@ class BaseButton: UIButton {
 
     init(style: Style, mode: Mode, title: String?){
         super.init(frame: .zero)
-        layer.cornerRadius = 40
+        layer.cornerRadius = 45
+        setupButton(style: style, mode: mode, title: title)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        NSLayoutConstraint.activate([
+            self.widthAnchor.constraint(equalToConstant: 90),
+            self.heightAnchor.constraint(equalToConstant: 90)
+        ])
+    }
+    func setupButton(style: Style, mode: Mode, title: String?){
         switch mode {
         case .title:
             setTitle(title, for: .normal)
@@ -51,16 +65,5 @@ class BaseButton: UIButton {
             setImage(Resource.Images.Icons.continueImage, for: .normal)
             backgroundColor = .black
         }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        NSLayoutConstraint.activate([
-            self.widthAnchor.constraint(equalToConstant: 80),
-            self.heightAnchor.constraint(equalToConstant: 80)
-        ])
     }
 }

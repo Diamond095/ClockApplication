@@ -11,8 +11,8 @@ class AlarmTableViewCell: UITableViewCell {
 
     let firstLabel : UILabel = {
         let label = UILabel()
-        label.text = "6:00"
-        label.font = UIFont.systemFont(ofSize: 70, weight: .light)
+        label.text = "06:00"
+        label.font = UIFont.systemFont(ofSize: 60, weight: .light)
         label.textColor = .gray
         return label
     }()
@@ -30,9 +30,13 @@ class AlarmTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        textLabel?.translatesAutoresizingMaskIntoConstraints = false
         frame = .zero
         backgroundColor = .black
         selectionStyle = .none
+       // textLabel?.text = "06:00"
+        textLabel?.font = UIFont.systemFont(ofSize: 60, weight: .light)
+        textLabel?.textColor = .gray
         setupViews()
         configure()
         switchView.addTarget(self, action: #selector(changeStyle), for: .valueChanged)
@@ -42,22 +46,22 @@ class AlarmTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func setupViews(){
-        setupView(firstLabel)
         setupView(secondLabel)
         setupView(switchView)
+        setupView(firstLabel)
     }
     func configure(){
         super.layoutSubviews()
+
         NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(equalToConstant: 300),
-            firstLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            firstLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-                        
-            secondLabel.leadingAnchor.constraint(equalTo: firstLabel.leadingAnchor),
+            firstLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            firstLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            
+            secondLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             secondLabel.topAnchor.constraint(equalTo: firstLabel.bottomAnchor),
             
-            switchView.leadingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -70),
-            switchView.topAnchor.constraint(equalTo: firstLabel.topAnchor, constant: 30)
+            switchView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            switchView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
 
         ])
     }
@@ -69,4 +73,5 @@ class AlarmTableViewCell: UITableViewCell {
             
         }
     }
+   
 }

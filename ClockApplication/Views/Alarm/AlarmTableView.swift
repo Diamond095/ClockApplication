@@ -11,13 +11,16 @@ class AlarmTableView: UITableView {
 
     init(){
         super.init(frame: .zero,style: .plain)
-        self.backgroundColor = .black
+        backgroundColor = .black
+        separatorColor = .gray
+        separatorStyle = .singleLine
+        indicatorStyle = .white
     }
   
     required init?(coder: NSCoder) {
         super.init(frame: .zero,style: .plain)
-        self.backgroundColor = .black
-        separatorColor = .gray
+        backgroundColor = .black
+        
     }
   
 }

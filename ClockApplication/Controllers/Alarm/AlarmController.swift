@@ -31,13 +31,15 @@ final class AlarmController : UIViewController {
         //title = Resource.Strings.Titles.alarm
         navigationController?.navigationBar.titleTextAttributes = titleWithAttributes
         navigationController?.tabBarItem.title=Resource.Strings.Titles.alarm
-        
-        let button = addLeftButtonInNavBar("Edit")
+        let leftNavButton = addLeftButtonInNavBar("Edit")
+        leftNavButton.addTarget(self, action: #selector(editAlarms), for: .touchDown)
         table.register(AlarmTableViewCell.self, forCellReuseIdentifier: "AlarmTableViewCell")
         table.dataSource = self
         table.delegate = self
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
         addPlusButtonNavBarInRight(selector: #selector(addAlarm))
-        view.setupView(overrideTitle)
+        //view.setupView(overrideTitle)
         constraintsView()
     
     }
@@ -49,11 +51,11 @@ final class AlarmController : UIViewController {
     
   func constraintsView(){
         NSLayoutConstraint.activate([
-            overrideTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            overrideTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+           // overrideTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+           // overrideTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             
-            table.topAnchor.constraint(equalTo: overrideTitle.bottomAnchor, constant: 20),
-            table.leadingAnchor.constraint(equalTo: overrideTitle.leadingAnchor),
+            table.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            table.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             table.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             table.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ]);
@@ -76,6 +78,12 @@ final class AlarmController : UIViewController {
     {
       // topColouredWhite()
     }
+    @objc func editAlarms(sender: UIButton){
+        table.isEditing.toggle()
+        navigationItem.leftBarButtonItem?.title = isEditing ? "Done" : "Edit"
+        
+        
+    }
 }
 
 extension AlarmController : UITableViewDataSource, UITableViewDelegate{
@@ -87,13 +95,17 @@ extension AlarmController : UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            100
+        100
         }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmTableViewCell" , for: indexPath) as?  AlarmTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmTableViewCell" , for: indexPath) as?  AlarmTableViewCell
         else { fatalError() }
         return cell
     }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        tableView.deleteRows(at: [indexPath], with: .left)
+    }
+    
     
 }
 

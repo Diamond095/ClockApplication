@@ -10,11 +10,10 @@ import UIKit
 class OptionalTableView: UITableView {
 
     init(){
-        super.init(frame: .zero, style: .plain)
+        super.init(frame: .zero, style: .insetGrouped)
         backgroundColor = .grayBackground
         clipsToBounds = true
-        layer.cornerRadius = 10
-        scrollsToTop = false
+        isScrollEnabled = false
     }
     
     required init?(coder: NSCoder) {

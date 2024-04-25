@@ -16,6 +16,12 @@ class CirclesTableCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         nameLabel.text = "Circle 1"
         timeLabel.text = "00:00,00"
+        nameLabel.textColor = .white
+        timeLabel.textColor = .white
+        backgroundColor = .black
+        selectionStyle = .none
+        setupViews()
+        constraintView()
     }
     
     
@@ -34,16 +40,16 @@ class CirclesTableCell: UITableViewCell {
     }
 
     func setupViews(){
-        setupView(nameLabel)
+       // setupView(nameLabel)
         setupView(timeLabel)
     }
     func constraintView(){
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            nameLabel.leadingAnchor.constraint(equalTo:contentView.leadingAnchor),
+            //nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            //  nameLabel.leadingAnchor.constraint(equalTo:contentView.leadingAnchor),
             
-            timeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            timeLabel.topAnchor.constraint(equalTo: nameLabel.topAnchor)
+            timeLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            timeLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15)
         ])
     }
 }

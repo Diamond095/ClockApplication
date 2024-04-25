@@ -7,11 +7,12 @@
 
 import UIKit
 
-class ChooseRepeatController: ViewController {
+class ChooseRepeatController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .black
         // Do any additional setup after loading the view.
     }
     

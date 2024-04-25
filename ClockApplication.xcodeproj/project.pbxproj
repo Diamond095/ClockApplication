@@ -43,6 +43,9 @@
 		DDACED452BD41B0D0037F913 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7CEBD12BB31718006E0568 /* Assets.xcassets */; };
 		DDACED472BD458490037F913 /* OptionalTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDACED462BD458490037F913 /* OptionalTableCell.swift */; };
 		DDACED4B2BD5733B0037F913 /* OptionalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDACED4A2BD5733B0037F913 /* OptionalTableView.swift */; };
+		DDACED4E2BD848090037F913 /* CirclesTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDACED4D2BD848090037F913 /* CirclesTableCell.swift */; };
+		DDACED512BD8FF830037F913 /* ChooseRepeatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDACED502BD8FF830037F913 /* ChooseRepeatController.swift */; };
+		DDACED532BD8FF990037F913 /* ChooseMelodyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDACED522BD8FF990037F913 /* ChooseMelodyController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +87,9 @@
 		DDACED432BD30E240037F913 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		DDACED462BD458490037F913 /* OptionalTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTableCell.swift; sourceTree = "<group>"; };
 		DDACED4A2BD5733B0037F913 /* OptionalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTableView.swift; sourceTree = "<group>"; };
+		DDACED4D2BD848090037F913 /* CirclesTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesTableCell.swift; sourceTree = "<group>"; };
+		DDACED502BD8FF830037F913 /* ChooseRepeatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRepeatController.swift; sourceTree = "<group>"; };
+		DDACED522BD8FF990037F913 /* ChooseMelodyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMelodyController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,8 +214,8 @@
 		DD7CEBEC2BBE993E006E0568 /* Alarm */ = {
 			isa = PBXGroup;
 			children = (
+				DDACED4F2BD8FF2C0037F913 /* AddAlarm */,
 				DD7CEBF12BBEBF05006E0568 /* AlarmController.swift */,
-				DD7CEBFC2BC085BD006E0568 /* AddAlarmController.swift */,
 				DD7CEC172BC529F9006E0568 /* AlarmTableViewController.swift */,
 				DD7CEC242BCE65CE006E0568 /* SpecifyAlarmControllerCollectionViewController.swift */,
 			);
@@ -231,7 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				DD7CEC122BC4802C006E0568 /* Alarm */,
-				DD7CEC112BC48018006E0568 /* StopWatch */,
 				DD7CEC102BC4800D006E0568 /* Global Clock */,
 				DD7CEC0F2BC48000006E0568 /* Timer */,
 				DD7CEC132BC4804E006E0568 /* BaseView.swift */,
@@ -269,6 +274,7 @@
 		DD7CEC112BC48018006E0568 /* StopWatch */ = {
 			isa = PBXGroup;
 			children = (
+				DDACED4D2BD848090037F913 /* CirclesTableCell.swift */,
 			);
 			path = StopWatch;
 			sourceTree = "<group>";
@@ -279,6 +285,7 @@
 				DD7CEC1D2BCD7BE0006E0568 /* AddAlarm */,
 				DD7CEC0D2BC47952006E0568 /* AlarmTableView.swift */,
 				DD7CEC332BCFCC61006E0568 /* AlarmTableViewCell.swift */,
+				DD7CEC112BC48018006E0568 /* StopWatch */,
 			);
 			path = Alarm;
 			sourceTree = "<group>";
@@ -299,6 +306,16 @@
 				DD7CEC2D2BCEC17B006E0568 /* GlobalClockTableViewCell.swift */,
 			);
 			path = AddGlobalClock;
+			sourceTree = "<group>";
+		};
+		DDACED4F2BD8FF2C0037F913 /* AddAlarm */ = {
+			isa = PBXGroup;
+			children = (
+				DD7CEBFC2BC085BD006E0568 /* AddAlarmController.swift */,
+				DDACED502BD8FF830037F913 /* ChooseRepeatController.swift */,
+				DDACED522BD8FF990037F913 /* ChooseMelodyController.swift */,
+			);
+			path = AddAlarm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -376,12 +393,14 @@
 				DD7CEBCD2BB31717006E0568 /* ViewController.swift in Sources */,
 				DDACED442BD30E240037F913 /* BaseButton.swift in Sources */,
 				DD7CEC0E2BC47952006E0568 /* AlarmTableView.swift in Sources */,
+				DDACED512BD8FF830037F913 /* ChooseRepeatController.swift in Sources */,
 				DD7CEC032BC2F365006E0568 /* GlobalClock.swift in Sources */,
 				DD7CEBFB2BBEC292006E0568 /* GlobalClockController.swift in Sources */,
 				DD7CEBE12BB35A2F006E0568 /* TabBarController.swift in Sources */,
 				DD7CEBF92BBEC27D006E0568 /* TimerController.swift in Sources */,
 				DD7CEC012BC2F352006E0568 /* Alarm .swift in Sources */,
 				DD7CEC2C2BCEC13E006E0568 /* GlobalClockcTableView.swift in Sources */,
+				DDACED532BD8FF990037F913 /* ChooseMelodyController.swift in Sources */,
 				DD7CEC0A2BC35354006E0568 /* StorgeDefaultUser.swift in Sources */,
 				DD7CEBF22BBEBF05006E0568 /* AlarmController.swift in Sources */,
 				DD7CEC2A2BCE6922006E0568 /* SearchTextFieldGlobalClock.swift in Sources */,
@@ -402,6 +421,7 @@
 				DD7CEC272BCE673D006E0568 /* AddGlobalClockViewController.swift in Sources */,
 				DD7CEBE52BB35C84006E0568 /* UIColor + ext.swift in Sources */,
 				DD7CEBCB2BB31717006E0568 /* SceneDelegate.swift in Sources */,
+				DDACED4E2BD848090037F913 /* CirclesTableCell.swift in Sources */,
 				DD7CEC142BC4804E006E0568 /* BaseView.swift in Sources */,
 				DD7CEBF02BBEBE92006E0568 /* NavBarController.swift in Sources */,
 				DD7CEC072BC2F3AB006E0568 /* Timer.swift in Sources */,

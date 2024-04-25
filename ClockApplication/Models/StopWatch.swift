@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct StopWatchModel {
+    var name: String
+    var time: String
+}

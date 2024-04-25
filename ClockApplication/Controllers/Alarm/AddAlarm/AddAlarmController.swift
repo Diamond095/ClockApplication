@@ -51,6 +51,11 @@ final class AddAlarmController: UIViewController {
     @objc func cancel(){
         self.dismiss(animated: true, completion: nil) 
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "show", let controller = segue.destination as? ChooseMelodyController{
+            
+        }
+    }
 
 }
 extension AddAlarmController : UITableViewDataSource, UITableViewDelegate {
@@ -65,13 +70,13 @@ extension AddAlarmController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            let cell = OptionalTableCell(mode: .withController, mainLabel: "Repeat", controllerOption: "Never")
+            let cell = OptionalTableCell(mode: .withController, mainLabel: "Repeat", controllerOption: "Never", presentController: ChooseRepeatController())
             return cell
         case 1:
             let cell = OptionalTableCell(mode: .withTextField, mainLabel: "Name", placeholder: "Alarm")
             return cell
         case 2:
-            let cell = OptionalTableCell(mode: .withController, mainLabel: "Melody", controllerOption: "Radar", )
+            let cell = OptionalTableCell(mode: .withController, mainLabel: "Melody", controllerOption: "Radar", presentController: ChooseMelodyController())
             return cell
         case 3:
             let cell = OptionalTableCell(mode: .withSwitch, mainLabel: "Repeat signal")
@@ -86,9 +91,15 @@ extension AddAlarmController : UITableViewDataSource, UITableViewDelegate {
         return OptionalTableView.automaticDimension
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath){
-                
+        switch indexPath.row {
+        case 0:
+            present(ChooseRepeatController(), animated: true, completion: nil)
+        case 2:
+            present(ChooseMelodyController(), animated: true, completion: nil)
+        default:
+            break
         }
+        
     }
 
     
