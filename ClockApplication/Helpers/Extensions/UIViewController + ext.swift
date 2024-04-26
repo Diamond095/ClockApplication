@@ -51,4 +51,10 @@ extension UIViewController : UIScrollViewDelegate
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
         return button
     }
+    func setTitle(title: String){
+        let titleWithAttributes : [NSAttributedString.Key: Any]  = [
+            .foregroundColor : UIColor.white]
+        self.title = title
+        navigationController?.navigationBar.titleTextAttributes = titleWithAttributes
+    }
 }

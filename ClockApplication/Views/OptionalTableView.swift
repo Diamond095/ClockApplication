@@ -14,6 +14,8 @@ class OptionalTableView: UITableView {
         backgroundColor = .grayBackground
         clipsToBounds = true
         isScrollEnabled = false
+        separatorColor = .gray
+        separatorStyle = .singleLine
     }
     
     required init?(coder: NSCoder) {

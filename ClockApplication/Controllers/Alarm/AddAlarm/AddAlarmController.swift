@@ -12,8 +12,6 @@ final class AddAlarmController: UIViewController {
 
  
     weak var delegate : AddAlarmControllerDelegate?
-    let titleWithAttributes : [NSAttributedString.Key: Any]  = [
-        .foregroundColor : UIColor.white]
     let timePicker = AlarmTimePicker()
     let table =  OptionalTableView()
     let scrollView = UIScrollView()
@@ -27,8 +25,7 @@ final class AddAlarmController: UIViewController {
         let leftNavButton = addLeftButtonInNavBar("Cancel")
         let rightNavButton =  addRightButtonInNavBar("Save")
         leftNavButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
-        navigationController?.navigationBar.titleTextAttributes = titleWithAttributes
-        title = "Add alarm"
+        setTitle(title: "Add alarm")
         view.backgroundColor = .grayBackground
         constraintsView()
         
@@ -93,9 +90,9 @@ extension AddAlarmController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            present(ChooseRepeatController(), animated: true, completion: nil)
+            navigationController?.pushViewController(ChooseRepeatController(), animated: true)
         case 2:
-            present(ChooseMelodyController(), animated: true, completion: nil)
+            navigationController?.pushViewController(ChooseMelodyController(), animated: true)
         default:
             break
         }

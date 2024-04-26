@@ -28,7 +28,7 @@ final class TabBarController: UITabBarController {
         }
     
     private func cofigure(){
-        tabBar.tintColor = UIColor.systemOrange
+        tabBar.tintColor = .systemOrange
         tabBar.barTintColor = .gray
         tabBar.backgroundColor = .black
         tabBar.layer.borderWidth = 1
