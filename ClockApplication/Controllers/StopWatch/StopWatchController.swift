@@ -37,6 +37,8 @@ final class StopWatchController : UIViewController{
     var isTimerRunning = false
     var milliseconds = 0
     var milisecondsForCircle = 0
+    var timerForCell = Timer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureController()
@@ -75,6 +77,7 @@ final class StopWatchController : UIViewController{
     @objc func startStopButtonTapped(sender: UIButton){
         if isTimerRunning {
             timer.invalidate()
+            timerForCell.invalidate()
             startStopButton.setupButton(style: .green, mode: .title, title: "Start")
             resetCircleButton.setTitle("Reset", for: .normal)
             resetCircleButton.addTarget(self, action: #selector(reset), for: .touchDown)
@@ -88,13 +91,12 @@ final class StopWatchController : UIViewController{
                 if circles.isEmpty {
                     indexPath = IndexPath(row: 0, section: 0)
                     circles.append(.init(name: "Circle 1", time: "00:00,00", color: .white))
-                    timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-                    table.beginUpdates()
-                    table.insertRows(at: [indexPath!], with: .automatic)
-                    table.endUpdates()
+                    timerForCell = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCircle), userInfo: nil, repeats: true)
+                    table.reloadData()
                 }
                 else{
-                    timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+                    
+                    timerForCell = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCircle), userInfo: nil, repeats: true)
                 }
             }
             isTimerRunning = !isTimerRunning
@@ -128,7 +130,7 @@ final class StopWatchController : UIViewController{
 
 extension StopWatchController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        circles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
