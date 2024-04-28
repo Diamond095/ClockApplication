@@ -14,8 +14,6 @@ class CirclesTableCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        nameLabel.text = "Circle 1"
-        timeLabel.text = "00:00,00"
         nameLabel.textColor = .white
         timeLabel.textColor = .white
         backgroundColor = .black

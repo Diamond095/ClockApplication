@@ -30,13 +30,12 @@ final class StopWatchController : UIViewController{
     }()
     
     var startStopButton = BaseButton(style: .green, mode: .title, title: "Start")
-    let resetCircleButton = BaseButton(style: .gray, mode: .title, title: "Circle")
+    let resetOrCircleButton = BaseButton(style: .gray, mode: .title, title: "Circle")
     var circles : [StopWatchModel] = []
-    var indexPath : IndexPath? = nil
     
     var isTimerRunning = false
     var milliseconds = 0
-    var milisecondsForCircle = 0
+    var millisecondsForCircle = 0
     var timerForCell = Timer()
     
     override func viewDidLoad() {
@@ -51,7 +50,7 @@ final class StopWatchController : UIViewController{
     
     func setupViews(){
         view.setupView(time)
-        view.setupView(resetCircleButton)
+        view.setupView(resetOrCircleButton)
         view.setupView(startStopButton)
         view.setupView(table)
     }
@@ -61,11 +60,11 @@ final class StopWatchController : UIViewController{
             time.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
             time.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             
-            resetCircleButton.topAnchor.constraint(equalTo: time.bottomAnchor, constant: 90),
-            resetCircleButton.leadingAnchor.constraint(equalTo: time.leadingAnchor),
+            resetOrCircleButton.topAnchor.constraint(equalTo: time.bottomAnchor, constant: 90),
+            resetOrCircleButton.leadingAnchor.constraint(equalTo: time.leadingAnchor),
             
             startStopButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            startStopButton.topAnchor.constraint(equalTo: resetCircleButton.topAnchor),
+            startStopButton.topAnchor.constraint(equalTo: resetOrCircleButton.topAnchor),
             
             table.topAnchor.constraint(equalTo: startStopButton.bottomAnchor, constant: 15),
             table.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -79,44 +78,64 @@ final class StopWatchController : UIViewController{
             timer.invalidate()
             timerForCell.invalidate()
             startStopButton.setupButton(style: .green, mode: .title, title: "Start")
-            resetCircleButton.setTitle("Reset", for: .normal)
-            resetCircleButton.addTarget(self, action: #selector(reset), for: .touchDown)
+            resetOrCircleButton.setTitleColor(.white, for: .normal)
+            resetOrCircleButton.setTitle("Reset", for: .normal)
+            resetOrCircleButton.backgroundColor = .customDarkGray
             } else {
                 timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
                 startStopButton.setupButton(style: .red, mode: .title, title: "Stop")
-                resetCircleButton.setTitle("Circle", for: .normal)
-                resetCircleButton.addTarget(self, action: #selector(circle), for: .touchUpInside)
-                resetCircleButton.backgroundColor = .customDarkGray
-                resetCircleButton.setTitleColor(.white, for: .normal)
+                resetOrCircleButton.setTitle("Circle", for: .normal)
+                resetOrCircleButton.backgroundColor = .customDarkGray
+                resetOrCircleButton.setTitleColor(.white, for: .normal)
                 if circles.isEmpty {
-                    indexPath = IndexPath(row: 0, section: 0)
-                    circles.append(.init(name: "Circle 1", time: "00:00,00", color: .white))
+                    circles.append(.init(name: "Circle 1", milliseconds: 0, color: .white))
+                }
                     timerForCell = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCircle), userInfo: nil, repeats: true)
                     table.reloadData()
-                }
-                else{
-                    
-                    timerForCell = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCircle), userInfo: nil, repeats: true)
-                }
+                
             }
             isTimerRunning = !isTimerRunning
         }
     
-    @objc func reset(sender: UIButton){
-        timer.invalidate()
-        milliseconds = 0
-        time.text = "00:00,00"
-        resetCircleButton.setupButton(style: .gray, mode: .title, title: "Circle")
+    @objc func resetOrCircle(sender: UIButton){
+    if isTimerRunning {
+        timerForCell.invalidate()
+        circles[0].milliseconds = Int(millisecondsForCircle)
+        millisecondsForCircle = 0
+        circles.insert(.init(name: "Circle \(circles.count+1)", milliseconds: millisecondsForCircle, color: .white), at: 0)
+        timerForCell = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCircle), userInfo: nil, repeats: true)
+        }
+        else{
+            timer.invalidate()
+            timerForCell.invalidate()
+            milliseconds = 0
+            millisecondsForCircle = 0
+            time.text = "00:00,00"
+            circles = []
+            resetOrCircleButton.setupButton(style: .gray, mode: .title, title: "Title")
+        }
+        table.reloadData()
     }
     @objc func circle(sender: UIButton){
+        
+        timerForCell.invalidate()
+        print(millisecondsForCircle)
+        circles[0].milliseconds = Int(millisecondsForCircle)
+        print(circles)
+        millisecondsForCircle = 0
+        circles.insert(.init(name: "Circle \(circles.count+1)", milliseconds: millisecondsForCircle, color: .white), at: 0)
+        timerForCell = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCircle), userInfo: nil, repeats: true)
+        table.reloadData()
     }
     @objc func updateTimer() {
         milliseconds += 1
         time.text = timeString(time: TimeInterval(milliseconds))
         }
     @objc func updateCircle(){
-        let cell = table.cellForRow(at: indexPath!) as? CirclesTableCell
-            cell?.timeLabel.text = timeString(time: TimeInterval(milliseconds))
+        millisecondsForCircle += 1
+        let index = IndexPath(row: 0, section: 0)
+        let cell = table.cellForRow(at: index) as? CirclesTableCell
+            cell?.timeLabel.text = timeString(time: TimeInterval(millisecondsForCircle))
         
     }
     func timeString(time: TimeInterval) -> String {
@@ -124,8 +143,7 @@ final class StopWatchController : UIViewController{
         let seconds = Int(time) / 100 % 60
         let milliseconds = Int(time) % 100
         return String(format: "%02d:%02d:%02d", minutes, seconds, milliseconds)
-}
-    
+    }
     }
 
 extension StopWatchController : UITableViewDelegate, UITableViewDataSource {
@@ -135,11 +153,11 @@ extension StopWatchController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CirclesTableCell", for: indexPath)
-        cell.textLabel?.text = "Circle"
+        cell.textLabel?.text = circles[indexPath.row].name
         cell.textLabel?.textColor = .white
         return cell
     }
-    
-    
 }
+
+
 
