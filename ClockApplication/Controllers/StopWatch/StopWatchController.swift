@@ -42,6 +42,7 @@ final class StopWatchController : UIViewController{
         super.viewDidLoad()
         configureController()
         startStopButton.addTarget(self, action: #selector(startStopButtonTapped), for: .touchDown)
+        resetOrCircleButton.addTarget(self, action: #selector(resetOrCircle), for: .touchDown)
         table.dataSource = self
         table.delegate = self
         setupViews()
@@ -112,7 +113,7 @@ final class StopWatchController : UIViewController{
             millisecondsForCircle = 0
             time.text = "00:00,00"
             circles = []
-            resetOrCircleButton.setupButton(style: .gray, mode: .title, title: "Title")
+            resetOrCircleButton.setupButton(style: .gray, mode: .title, title: "Circle")
         }
         table.reloadData()
     }
