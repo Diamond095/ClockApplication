@@ -10,10 +10,10 @@ import UIKit
 @main class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-    let topBar = UINavigationBarAppearance()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        topBar.configureWithOpaqueBackground()
-        topBar.backgroundColor = .black
+        if #available(iOS 13.0, *){
+            UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = .dark
+        }
         // Override point for customization after application launch.
         return true
     }
