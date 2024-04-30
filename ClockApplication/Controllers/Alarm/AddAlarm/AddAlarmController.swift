@@ -48,19 +48,14 @@ final class AddAlarmController: UIViewController {
     @objc func cancel(){
         self.dismiss(animated: true, completion: nil) 
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "show", let controller = segue.destination as? ChooseMelodyController{
-            
-        }
-    }
 
 }
 extension AddAlarmController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        4
+        return 4
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        return 1
         
     }
 

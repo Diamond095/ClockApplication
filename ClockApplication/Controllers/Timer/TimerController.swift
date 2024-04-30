@@ -15,6 +15,7 @@ class TimerController : UIViewController {
     let cancelButton = BaseButton(style: .gray, mode: .title, title: "Cancel")
     let startButton = BaseButton(style: .green, mode: .title, title: "Start")
     let timePicker = UIPickerView(frame:.zero)
+    let table = OptionalTableView()
     
     override func viewDidLoad() {
         configureController()
@@ -23,6 +24,8 @@ class TimerController : UIViewController {
         cancelButton.layoutSubviews()
         timePicker.delegate = self
         timePicker.dataSource = self
+        table.dataSource = self
+        table.delegate = self
         timePicker.setValue(Resource.Colors.dirtyWhite, forKey: "textColor")
         timePicker.selectRow(59, inComponent: 1, animated: false)
         let leftNavButton = addLeftButtonInNavBar("Edit")
@@ -33,6 +36,7 @@ class TimerController : UIViewController {
         view.setupView(timePicker)
         view.setupView(cancelButton)
         view.setupView(startButton)
+        view.setupView(table)
     }
     func constraintViews(){
         NSLayoutConstraint.activate([
@@ -47,7 +51,12 @@ class TimerController : UIViewController {
             cancelButton.topAnchor.constraint(equalTo: timePicker.bottomAnchor, constant: 20),
             
             startButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            startButton.topAnchor.constraint(equalTo: cancelButton.topAnchor, constant: 0)
+            startButton.topAnchor.constraint(equalTo: cancelButton.topAnchor, constant: 0),
+            
+            table.leadingAnchor.constraint(equalTo: timePicker.leadingAnchor),
+            table.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 10),
+            table.widthAnchor.constraint(equalTo: view.widthAnchor),
+            table.heightAnchor.constraint(equalTo: view.heightAnchor)
             
         ])
     }
@@ -82,4 +91,25 @@ extension TimerController :  UIPickerViewDelegate, UIPickerViewDataSource {
              return nil
         }
     }
+}
+
+extension TimerController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.row {
+        case 0:
+            let cell = OptionalTableCell(mode: .withTextField, mainLabel: "Name", placeholder: "Timer")
+            return cell
+        case 1:
+            let cell = OptionalTableCell(mode: .withController, mainLabel: "Upon completion", controllerOption: "Radar")
+            return cell
+        default:
+            return UITableViewCell()
+        }
+    }
+    
+    
 }

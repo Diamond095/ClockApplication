@@ -37,12 +37,14 @@ final class StopWatchController : UIViewController{
     var milliseconds = 0
     var millisecondsForCircle = 0
     var timerForCell = Timer()
+    var previosMaxCircleIndex : Int = 0
+    var previosMinCircleIndex  : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureController()
-        startStopButton.addTarget(self, action: #selector(startStopButtonTapped), for: .touchDown)
-        resetOrCircleButton.addTarget(self, action: #selector(resetOrCircle), for: .touchDown)
+        startStopButton.addTarget(self, action: #selector(startStopButtonTapped), for: .touchUpInside)
+        resetOrCircleButton.addTarget(self, action: #selector(resetOrCircle), for: .touchUpInside)
         table.dataSource = self
         table.delegate = self
         setupViews()
@@ -99,30 +101,42 @@ final class StopWatchController : UIViewController{
         }
     
     @objc func resetOrCircle(sender: UIButton){
-    if isTimerRunning {
-        timerForCell.invalidate()
-        circles[0].milliseconds = millisecondsForCircle
-        
-        if  let max = circles.max(by: {$0.milliseconds>$1.milliseconds}) {
-            if let maxIndex = circles.firstIndex(where: {$0.milliseconds == max.milliseconds}){
-                if circles[maxIndex].milliseconds < circles[0].milliseconds{
-                    circles[0].color = .red
-                    print(maxIndex)
-                    circles[maxIndex].color = .white
-                }
-            }
-        }
-            if  let min = circles.min(by: {$0.milliseconds<$1.milliseconds}) {
-                if let minIndex = circles.firstIndex(where: {$0.milliseconds == min.milliseconds}){
-                    if circles[minIndex].milliseconds > circles[0].milliseconds{
-                        circles[0].color = .green
-                        circles[minIndex].color = .white
+        if isTimerRunning {
+            timerForCell.invalidate()
+            circles[0].milliseconds = millisecondsForCircle
+            millisecondsForCircle = 0
+            if  let max = circles.max(by: {$0.milliseconds<$1.milliseconds}) {
+                if let maxIndex = circles.firstIndex(where: {$0.milliseconds == max.milliseconds}){
+                    if circles[maxIndex].milliseconds>circles[previosMaxCircleIndex].milliseconds {
+                        circles[maxIndex].color = .red
+                        circles[previosMaxCircleIndex].color = .white
+                        previosMaxCircleIndex = maxIndex
                     }
                 }
             }
-        millisecondsForCircle = 0
-        circles.insert(.init(name: "Circle \(circles.count+1)", milliseconds: millisecondsForCircle, color: .white), at: 0)
-        timerForCell = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCircle), userInfo: nil, repeats: true)
+            if  let min = circles.min(by: {$0.milliseconds<$1.milliseconds}) {
+                if let minIndex = circles.firstIndex(where: {$0.milliseconds == min.milliseconds}){
+                    if circles[minIndex].milliseconds<circles[previosMinCircleIndex].milliseconds{
+                        circles[minIndex].color = .green
+                        circles[previosMinCircleIndex].color = .white
+                        previosMinCircleIndex = minIndex
+                    }
+                }
+            }
+            if circles.count == 2 {
+                if circles[0].milliseconds > circles[1].milliseconds {
+                    circles[0].color = .red
+                    circles[1].color = .green
+                }
+                else{
+                    circles[0].color = .green
+                    circles[1].color = .red
+                }
+            }
+            circles.insert(.init(name: "Circle \(circles.count+1)", milliseconds: millisecondsForCircle, color: .white), at: 0)
+            previosMaxCircleIndex += 1
+            previosMinCircleIndex += 1
+            timerForCell = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateCircle), userInfo: nil, repeats: true)
         }
         else{
             timer.invalidate()
@@ -131,6 +145,8 @@ final class StopWatchController : UIViewController{
             millisecondsForCircle = 0
             time.text = "00:00,00"
             circles = []
+            previosMaxCircleIndex = 0
+            previosMinCircleIndex = 0
             resetOrCircleButton.setupButton(style: .gray, mode: .title, title: "Circle")
         }
         table.reloadData()
